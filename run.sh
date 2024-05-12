@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# to stop on first error
+set -e
+
+# Delete older .pyc files
+# find . -type d \( -name env -o -name venv  \) -prune -false -o -name "*.pyc" -exec rm -rf {} \;
+
+# Run required migrations
+export FLASK_APP=core/server.py
+
+# flask db init -d core/migrations/
+# flask db migrate -m "Initial migration." -d core/migrations/
+# flask db upgrade -d core/migrations/
+
+# Run server
+# gunicorn -c gunicorn_config.py core.server:app
+# C:\\X\\fyle-interview-intern-backend\\env\\Scripts\\gunicorn.exe -b localhost:8000 core.server:app
+# cmd.exe /c "C:\X\fyle-interview-intern-backend\env\Scripts\gunicorn.exe -b localhost:8000 core.server:app"
+C:\\X\\fyle-interview-intern-backend\\env\\Scripts\\waitress-serve.exe --port=8000 core.server:app
